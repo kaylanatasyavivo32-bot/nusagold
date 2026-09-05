@@ -1,0 +1,1018 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="theme-color" content="#062e21">
+<title>NUSAGOLD — Platform Investasi & Manajemen Aset Modern</title>
+<link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#f4f7f5;
+  --surface:#ffffff;
+  --surface-card:#ffffff;
+  --text:#111827;
+  --muted:#6b7280;
+  --green:#0f5132;
+  --green-light:#d1e7dd;
+  --green-hover:#145c39;
+  --accent:#198754;
+  --border:#e5e7eb;
+  --shadow:0 10px 25px -5px rgba(0, 0, 0, 0.05), 0 8px 10px -6px rgba(0, 0, 0, 0.05);
+}
+
+*{box-sizing:border-box}
+html{scroll-behavior:smooth}
+body{
+  margin:0;
+  background:var(--bg);
+  color:var(--text);
+  font:15px/1.5 'Plus Jakarta Sans', system-ui, sans-serif;
+  overflow-x:hidden;
+}
+
+a{color:inherit;text-decoration:none}
+.wrap{max-width:480px;margin:auto;padding:0 16px;min-height:100vh;display:flex;flex-direction:column;position:relative;background:var(--bg);padding-bottom:90px;}
+
+/* HEADER / TOP BAR */
+.topbar{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  padding:16px 0;
+}
+.brand{
+  font-size:18px;
+  font-weight:800;
+  color:var(--green);
+  letter-spacing:0.5px;
+  display:flex;
+  align-items:center;
+  gap:8px;
+}
+.brand-logo{
+  width:32px;height:32px;
+  background:var(--green);
+  color:white;
+  display:grid;
+  place-items:center;
+  border-radius:8px;
+  font-weight:800;
+  font-size:16px;
+}
+.user-pill{
+  display:flex;
+  align-items:center;
+  gap:8px;
+  font-size:14px;
+  font-weight:600;
+  color:var(--text);
+  cursor:pointer;
+}
+.user-avatar{
+  width:32px;height:32px;background:var(--border);border-radius:50%;display:grid;place-items:center;font-size:12px;color:var(--muted);
+}
+
+/* CARDS */
+.card-banner{
+  background:linear-gradient(135deg, #0b3c29 0%, #062e21 100%);
+  color:white;
+  border-radius:18px;
+  padding:18px;
+  margin-bottom:14px;
+  position:relative;
+  overflow:hidden;
+  box-shadow:var(--shadow);
+}
+.card-banner::after{
+  content:'';position:absolute;right:-20px;bottom:-20px;width:120px;height:120px;background:rgba(25,135,84,0.3);border-radius:50%;filter:blur(20px);
+}
+.banner-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  font-weight:700;
+  letter-spacing:0.5px;
+  color:#a3cfbb;
+  margin-bottom:10px;
+}
+.banner-main{
+  font-size:22px;
+  font-weight:800;
+  margin-bottom:6px;
+}
+.progress-bar-bg{
+  width:100%;height:6px;background:rgba(255,255,255,0.15);border-radius:3px;margin:12px 0;overflow:hidden;
+}
+.progress-bar-fill{
+  width:30.5%;height:100%;background:#20c997;border-radius:3px;
+}
+.banner-sub{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:12px;
+  color:#e2e8f0;
+}
+
+/* BUTTONS */
+.btn{
+  display:inline-flex;
+  align-items:center;
+  justify-content:center;
+  padding:10px 16px;
+  border-radius:12px;
+  font-weight:700;
+  font-size:13px;
+  cursor:pointer;
+  transition:0.2s;
+  border:none;
+}
+.btn-primary{
+  background:var(--green);
+  color:white;
+}
+.btn-primary:hover{background:var(--green-hover)}
+.btn-light{
+  background:white;
+  color:var(--green);
+}
+
+/* SALDO BOX */
+.saldo-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+.saldo-row{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+}
+.saldo-actions{
+  display:grid;
+  grid-template-columns:repeat(3, 1fr);
+  gap:10px;
+  margin-top:14px;
+  padding-top:14px;
+  border-top:1px solid var(--border);
+  text-align:center;
+}
+.action-item{
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  gap:4px;
+  font-size:12px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+}
+.action-icon{
+  width:38px;height:38px;background:var(--green-light);color:var(--green);border-radius:12px;display:grid;place-items:center;font-size:16px;
+}
+
+/* VIP BANNER */
+.vip-banner{
+  background:linear-gradient(135deg, #145c39 0%, #0f5132 100%);
+  color:white;
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:14px;
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  box-shadow:var(--shadow);
+  cursor:pointer;
+}
+
+/* MENU GRID 4x2 */
+.menu-grid{
+  display:grid;
+  grid-template-columns:repeat(4, 1fr);
+  gap:12px;
+  margin-bottom:20px;
+}
+.menu-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px 6px;
+  text-align:center;
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+  box-shadow:var(--shadow);
+  transition:0.2s;
+}
+.menu-card:hover{border-color:var(--green);color:var(--text)}
+.menu-card-icon{
+  width:40px;height:40px;background:var(--bg);border-radius:12px;display:grid;place-items:center;font-size:18px;margin:0 auto 8px;color:var(--green);
+}
+
+/* SECTION TITLES */
+.section-title{
+  font-size:15px;
+  font-weight:800;
+  margin-bottom:10px;
+  color:var(--text);
+}
+
+/* PORTFOLIO / LIST EMPTY BOX */
+.empty-box{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:24px 16px;
+  text-align:center;
+  box-shadow:var(--shadow);
+  margin-bottom:14px;
+}
+.empty-icon{
+  width:48px;height:48px;background:var(--green-light);color:var(--green);border-radius:14px;display:grid;place-items:center;font-size:20px;margin:0 auto 12px;
+}
+
+/* MARKET CARDS */
+.market-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:18px;
+  padding:16px;
+  margin-bottom:14px;
+  box-shadow:var(--shadow);
+}
+.market-header{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:12px;
+  font-size:12px;
+  color:var(--muted);
+  font-weight:600;
+}
+.market-body{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  background:var(--bg);
+  padding:12px;
+  border-radius:12px;
+  margin-bottom:12px;
+}
+.market-features{
+  display:flex;
+  gap:12px;
+  font-size:11px;
+  color:var(--muted);
+  margin-bottom:14px;
+}
+.market-features span{display:flex;align-items:center;gap:4px;}
+
+/* TESTIMONI CARDS */
+.testi-card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:16px;
+  padding:14px;
+  margin-bottom:10px;
+  box-shadow:var(--shadow);
+}
+.testi-top{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  margin-bottom:6px;
+  font-size:13px;
+  font-weight:700;
+}
+.testi-msg{
+  font-size:13px;
+  color:var(--muted);
+  margin-bottom:8px;
+}
+.testi-user{
+  display:flex;
+  justify-content:space-between;
+  align-items:center;
+  font-size:11px;
+  color:var(--muted);
+  border-top:1px solid var(--border);
+  padding-top:6px;
+}
+
+/* BOTTOM NAVIGATION BAR */
+.bottom-nav{
+  position:fixed;
+  bottom:0;left:0;right:0;
+  background:var(--surface);
+  border-top:1px solid var(--border);
+  height:70px;
+  display:flex;
+  justify-content:around;
+  align-items:center;
+  z-index:100;
+  max-width:480px;
+  margin:auto;
+  padding:0 10px;
+}
+.nav-item{
+  flex:1;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  font-size:11px;
+  font-weight:600;
+  color:var(--muted);
+  cursor:pointer;
+  transition:0.2s;
+  background:none;
+  border:none;
+}
+.nav-item.active{
+  color:var(--green);
+}
+.nav-item.active .nav-icon-wrap{
+  background:var(--green);
+  color:white;
+}
+.nav-icon-wrap{
+  width:36px;height:36px;border-radius:50%;display:grid;place-items:center;font-size:16px;background:var(--bg);transition:0.2s;
+}
+
+/* VIEWS CONTAINER */
+.view{display:none;}
+.view.active{display:block;}
+
+/* MODAL / TOAST */
+.modal{
+  position:fixed;inset:0;background:rgba(0,0,0,0.5);backdrop-filter:blur(4px);
+  display:none;place-items:center;padding:20px;z-index:1000;
+}
+.modal.show{display:grid}
+.modalbox{
+  width:100%;max-width:400px;background:var(--surface);border-radius:20px;padding:20px;position:relative;box-shadow:0 20px 25px -5px rgba(0,0,0,0.1);max-height:85vh;overflow-y:auto;
+}
+.toast{
+  position:fixed;top:20px;left:50%;transform:translateX(-50%);background:#111827;color:white;padding:10px 20px;border-radius:30px;font-size:13px;font-weight:600;display:none;z-index:1100;box-shadow:var(--shadow);
+}
+input, select{
+  width:100%;padding:12px;border-radius:10px;border:1px solid var(--border);background:var(--bg);color:var(--text);font-family:inherit;font-size:14px;outline:none;margin-bottom:12px;
+}
+input:focus, select:focus{border-color:var(--green)}
+</style>
+</head>
+<body>
+
+<div class="wrap">
+  
+  <!-- VIEW 1: UTAMA / HOME -->
+  <div id="view-utama" class="view active">
+    <div class="topbar">
+      <div class="brand">
+        <div class="brand-logo">N</div>
+        NUSAGOLD
+      </div>
+      <div class="user-pill" onclick="switchTab('profil')">
+        <span id="userNameHeader">Sandi</span>
+        <div class="user-avatar" id="userInitialHeader">S</div>
+      </div>
+    </div>
+
+    <!-- Card Lot Banner -->
+    <div class="card-banner">
+      <div class="banner-top">
+        <span>● PENAWARAN LOT • FASE 1</span>
+        <span>KUOTA TERBATAS</span>
+      </div>
+      <div class="banner-main" id="lotSisaText">695.020 <span style="font-size:13px;font-weight:normal;color:#a3cfbb">lot tersisa</span></div>
+      <div class="progress-bar-bg"><div class="progress-bar-fill"></div></div>
+      <div class="banner-sub">
+        <span>Dari 1.000.000 lot</span>
+        <span style="font-weight:700;color:#20c997">Rp 5.000 / lot</span>
+      </div>
+      <button class="btn btn-light" style="width:100%;margin-top:14px;font-weight:800;" onclick="switchTab('investasi')">Beli Lot Sekarang</button>
+    </div>
+
+    <!-- Saldo Bank Card -->
+    <div class="saldo-box">
+      <div class="saldo-row">
+        <div>
+          <span style="font-size:11px;color:var(--muted);font-weight:700">SALDO UTAMA & BANK</span>
+          <div style="font-size:22px;font-weight:800;margin-top:2px;" id="saldoUtamaText">Rp 0</div>
+        </div>
+        <div style="font-size:24px;">🏦</div>
+      </div>
+      <div class="saldo-actions">
+        <div class="action-item" onclick="showToast('Menu Deposit Dibuka')">
+          <div class="action-icon">↓</div> Deposit
+        </div>
+        <div class="action-item" onclick="showToast('Menu Penarikan Dibuka')">
+          <div class="action-icon">↑</div> Tarik
+        </div>
+        <div class="action-item" onclick="showToast('Mutasi Transaksi Kosong')">
+          <div class="action-icon">⇄</div> Mutasi
+        </div>
+      </div>
+    </div>
+
+    <!-- VIP Banner -->
+    <div class="vip-banner" onclick="showToast('Status VIP: Akses Premium Aktif')">
+      <div>
+        <div style="font-size:12px;color:#a3cfbb;font-weight:700">PROGRAM EKSKLUSIF</div>
+        <div style="font-size:16px;font-weight:800;margin-top:2px;">Tingkatkan Status VIP</div>
+        <div style="font-size:11px;color:#e2e8f0;margin-top:2px;">Akses produk premium & profit lebih tinggi</div>
+      </div>
+      <button class="btn" style="background:white;color:var(--green);font-size:12px;padding:8px 12px;">Info</button>
+    </div>
+
+    <!-- Menu Grid 4x2 -->
+    <div class="menu-grid">
+      <div class="menu-card" onclick="openModalTugas()">
+        <div class="menu-card-icon">📋</div>Tugas
+      </div>
+      <div class="menu-card" onclick="openModalUndangan()">
+        <div class="menu-card-icon">👥</div>Undangan
+      </div>
+      <div class="menu-card" onclick="openModalBonus()">
+        <div class="menu-card-icon">🎁</div>Bonus
+      </div>
+      <div class="menu-card" onclick="switchTab('bukti')">
+        <div class="menu-card-icon">💬</div>Testimoni
+      </div>
+      <div class="menu-card" onclick="showToast('Mengunduh Aplikasi Android APK...')">
+        <div class="menu-card-icon">📥</div>Download
+      </div>
+      <div class="menu-card" onclick="showToast('Mengarahkan ke Grup Komunitas Telegram...')">
+        <div class="menu-card-icon">✈️</div>Komunitas
+      </div>
+      <div class="menu-card" onclick="showToast('Menghubungkan ke Layanan Pelanggan 24/7...')">
+        <div class="menu-card-icon">🎧</div>Layanan
+      </div>
+      <div class="menu-card" onclick="showToast('NUSAGOLD Platform Manajemen Aset Modern 2026')">
+        <div class="menu-card-icon">ℹ️</div>Tentang
+      </div>
+    </div>
+
+    <div class="section-title">Alokasi Portofolio</div>
+    <div class="empty-box">
+      <div class="empty-icon">📄</div>
+      <div style="font-weight:700;margin-bottom:4px;">Belum ada investasi aktif</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Mulai beli lot untuk portofolio dan terima bagi hasil harian.</div>
+      <button class="btn btn-primary" onclick="switchTab('investasi')">Lihat Pasar Investasi</button>
+    </div>
+  </div>
+
+  <!-- VIEW 2: INVESTASI / PASAR -->
+  <div id="view-investasi" class="view">
+    <div class="topbar">
+      <div class="brand">Daftar Investasi</div>
+    </div>
+    <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Pilih paket lot perusahaan Anda untuk mulai bagi hasil.</div>
+
+    <div class="card-banner" style="margin-bottom:14px;">
+      <div class="banner-top"><span>PENAWARAN LOT • FASE 1</span><span>KUOTA TERBATAS</span></div>
+      <div class="banner-main" style="font-size:18px;">695.020 <span style="font-size:12px;color:#a3cfbb">lot tersisa</span></div>
+      <div style="font-size:12px;color:#e2e8f0;margin-top:4px;">Dari 1.000.000 lot • Rp 5.000 / lot</div>
+    </div>
+
+    <!-- Item Investasi 1 -->
+    <div class="market-card">
+      <div class="market-header">
+        <span>Capital Lot • NUSAGOLD</span>
+        <span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:6px;font-weight:700;">Masa Aktif 30 Hari</span>
+      </div>
+      <div class="market-body">
+        <div>
+          <div style="font-size:18px;font-weight:800;color:var(--green);">10 Lot</div>
+          <small style="font-size:11px;color:var(--muted);">@ Rp 5.000 / lot</small>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:var(--muted)">PROFIT / HARI</div>
+          <div style="font-size:15px;font-weight:800;color:var(--accent);">+Rp 18.000</div>
+        </div>
+      </div>
+      <div class="market-features">
+        <span>✓ Kepemilikan resmi</span>
+        <span>✓ Bagi hasil 24 jam</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;">
+        <div>
+          <span style="font-size:10px;color:var(--muted)">TOTAL IMBAL HASIL</span>
+          <div style="font-size:15px;font-weight:800;color:var(--text);">Rp 540.000</div>
+        </div>
+        <button class="btn btn-primary" onclick="beliLot(10, 50000)">Beli Rp 50.000</button>
+      </div>
+    </div>
+
+    <!-- Item Investasi 2 -->
+    <div class="market-card">
+      <div class="market-header">
+        <span>Capital Lot • NUSAGOLD</span>
+        <span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:6px;font-weight:700;">Masa Aktif 30 Hari</span>
+      </div>
+      <div class="market-body">
+        <div>
+          <div style="font-size:18px;font-weight:800;color:var(--green);">30 Lot</div>
+          <small style="font-size:11px;color:var(--muted);">@ Rp 5.000 / lot</small>
+        </div>
+        <div style="text-align:right;">
+          <div style="font-size:11px;color:var(--muted)">PROFIT / HARI</div>
+          <div style="font-size:15px;font-weight:800;color:var(--accent);">+Rp 58.500</div>
+        </div>
+      </div>
+      <div class="market-features">
+        <span>✓ Kepemilikan resmi</span>
+        <span>✓ Bagi hasil 24 jam</span>
+      </div>
+      <div style="display:flex;justify-content:space-between;align-items:center;border-top:1px solid var(--border);padding-top:12px;">
+        <div>
+          <span style="font-size:10px;color:var(--muted)">TOTAL IMBAL HASIL</span>
+          <div style="font-size:15px;font-weight:800;color:var(--text);">Rp 1.755.000</div>
+        </div>
+        <button class="btn btn-primary" onclick="beliLot(30, 150000)">Beli Rp 150.000</button>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 3: PORTOFOLIO -->
+  <div id="view-portofolio" class="view">
+    <div class="topbar">
+      <div class="brand">Kepemilikan Lot</div>
+      <span style="font-size:12px;background:var(--green-light);color:var(--green);padding:4px 10px;border-radius:8px;font-weight:700;" id="sertifBadge">0 Sertifikat</span>
+    </div>
+
+    <!-- Total Nilai Portofolio Card -->
+    <div class="card-banner" style="margin-bottom:14px;">
+      <div class="banner-top"><span>TOTAL NILAI PORTOFOLIO</span><span>AKTIF</span></div>
+      <div class="banner-main" id="portoTotalNilai">Rp 0</div>
+      <div style="font-size:12px;color:#a3cfbb;margin-bottom:12px;" id="portoJmlLot">0 Lot dimiliki</div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;font-size:12px;">
+        <div>TOTAL KEUNTUNGAN<br><strong id="portoKeuntungan">Rp 0</strong></div>
+        <div>SALDO DIVIDEN<br><strong id="portoDividen">Rp 0</strong></div>
+      </div>
+    </div>
+
+    <div class="empty-box" id="portoEmptyContainer">
+      <div class="empty-icon">📄</div>
+      <div style="font-weight:700;margin-bottom:4px;">Belum ada kepemilikan lot aktif</div>
+      <div style="font-size:12px;color:var(--muted);margin-bottom:14px;">Pilih paket di pasar investasi untuk mulai menerima bagi hasil harian.</div>
+      <button class="btn btn-primary" onclick="switchTab('investasi')">Lihat Pasar Investasi</button>
+    </div>
+
+    <div id="portoListContainer" style="display:flex;flex-direction:column;gap:10px;"></div>
+  </div>
+
+  <!-- VIEW 4: BUKTI / TESTIMONI -->
+  <div id="view-bukti" class="view">
+    <div class="topbar">
+      <div class="brand">Testimoni Member</div>
+    </div>
+    
+    <div style="background:linear-gradient(135deg, #0b3c29 0%, #062e21 100%);color:white;padding:16px;border-radius:16px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:12px;color:#a3cfbb;font-weight:700">Tulis Testimoni Anda • BONUS</div>
+        <div style="font-size:13px;margin-top:2px;">Bagikan bukti penarikanmu & dapatkan bonus saldo</div>
+      </div>
+      <button class="btn btn-light" onclick="openTestiModal()">Tulis →</button>
+    </div>
+
+    <!-- Feed Testimoni -->
+    <div class="testi-card">
+      <div class="testi-top">
+        <span>Bambang Astadi</span>
+        <span style="color:var(--green);font-size:14px;">Rp 39.500</span>
+      </div>
+      <div class="testi-msg">penarikan ke 3. lancar</div>
+      <div class="testi-user">
+        <span>ID 8*********9 • 05 Sep 2026, 10:40</span>
+        <span style="background:var(--green-light);color:var(--green);padding:2px 6px;border-radius:4px;font-size:10px;">PENARIKAN BERHASIL</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <span>Ranti Astra nurfita</span>
+        <span style="color:var(--green);font-size:14px;">Rp 152.500</span>
+      </div>
+      <div class="testi-msg">Woow keren masuk lagi mantaaap</div>
+      <div class="testi-user">
+        <span>ID 8*********7 • 05 Sep 2026, 09:31</span>
+        <span style="background:var(--green-light);color:var(--green);padding:2px 6px;border-radius:4px;font-size:10px;">PENARIKAN BERHASIL</span>
+      </div>
+    </div>
+
+    <div class="testi-card">
+      <div class="testi-top">
+        <span>ecaa</span>
+        <span style="color:var(--green);font-size:14px;">Rp 4.600.000</span>
+      </div>
+      <div class="testi-msg">Alhamdulilah masih pagi liat saldo segini bahagia banget</div>
+      <div class="testi-user">
+        <span>ID 8*********0 • 05 Sep 2026, 09:27</span>
+        <span style="background:var(--green-light);color:var(--green);padding:2px 6px;border-radius:4px;font-size:10px;">PENARIKAN BERHASIL</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- VIEW 5: PROFIL -->
+  <div id="view-profil" class="view">
+    <div class="topbar">
+      <div class="brand">Profil Saya</div>
+    </div>
+
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:16px;display:flex;justify-content:space-between;align-items:center;margin-bottom:14px;box-shadow:var(--shadow);">
+      <div style="display:flex;gap:12px;align-items:center;">
+        <div style="width:48px;height:48px;background:var(--green-light);color:var(--green);border-radius:50%;display:grid;place-items:center;font-weight:800;font-size:18px;" id="profilAvatarInitial">S</div>
+        <div>
+          <div style="font-weight:800;font-size:16px;" id="profilName">Sandi</div>
+          <div style="font-size:12px;color:var(--muted);">ID 882172420868</div>
+        </div>
+      </div>
+      <button class="btn" style="background:var(--bg);border:1px solid var(--border);color:var(--text);font-size:12px;" onclick="openEditModal()">Ubah</button>
+    </div>
+
+    <!-- Total Portofolio Summary in Profile -->
+    <div class="card-banner" style="margin-bottom:14px;">
+      <div class="banner-top"><span>TOTAL PORTOFOLIO</span></div>
+      <div class="banner-main" id="profilTotalVal">Rp 0</div>
+      <div style="display:flex;justify-content:space-between;border-top:1px solid rgba(255,255,255,0.15);padding-top:10px;font-size:12px;margin-top:10px;">
+        <div>SALDO UTAMA<br><strong id="profilSaldoUtama">Rp 0</strong></div>
+        <div>SALDO BANK<br><strong>Rp 0</strong></div>
+      </div>
+    </div>
+
+    <div class="section-title">Pengaturan</div>
+    <div style="background:var(--surface);border:1px solid var(--border);border-radius:18px;overflow:hidden;box-shadow:var(--shadow);">
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;" onclick="openEditModal()">
+        <span style="font-weight:600;">Data Profil <br><small style="color:var(--muted);font-weight:normal">Nama, foto & info akun</small></span>
+        <span style="color:var(--muted);">›</span>
+      </div>
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;" onclick="showToast('Keamanan Akun Aktif')">
+        <span style="font-weight:600;">Keamanan <br><small style="color:var(--muted);font-weight:normal">Kata sandi & PIN akun</small></span>
+        <span style="color:var(--muted);">›</span>
+      </div>
+      <div style="padding:14px 16px;border-bottom:1px solid var(--border);display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;" onclick="showToast('Pusat Bantuan 24/7')">
+        <span style="font-weight:600;">Pusat Bantuan <br><small style="color:var(--muted);font-weight:normal">Hubungi tim dukungan</small></span>
+        <span style="color:var(--muted);">›</span>
+      </div>
+      <div style="padding:14px 16px;display:flex;justify-content:space-between;align-items:center;font-size:13px;cursor:pointer;" onclick="showToast('Mengunduh APK Aplikasi Android')">
+        <span style="font-weight:600;">Unduh Aplikasi <br><small style="color:var(--muted);font-weight:normal">Aplikasi Android (APK)</small></span>
+        <span style="color:var(--muted);">›</span>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" id="nav-utama" onclick="switchTab('utama')">
+      <div class="nav-icon-wrap">🏠</div>
+      <span>Utama</span>
+    </button>
+    <button class="nav-item" id="nav-investasi" onclick="switchTab('investasi')">
+      <div class="nav-icon-wrap">📈</div>
+      <span>Investasi</span>
+    </button>
+    <button class="nav-item" id="nav-portofolio" onclick="switchTab('portofolio')">
+      <div class="nav-icon-wrap">📊</div>
+      <span>Portofolio</span>
+    </button>
+    <button class="nav-item" id="nav-bukti" onclick="switchTab('bukti')">
+      <div class="nav-icon-wrap">💬</div>
+      <span>Bukti</span>
+    </button>
+    <button class="nav-item" id="nav-profil" onclick="switchTab('profil')">
+      <div class="nav-icon-wrap">👤</div>
+      <span>Profil</span>
+    </button>
+  </nav>
+
+</div>
+
+<!-- MODAL EDIT PROFIL -->
+<div class="modal" id="editModal">
+  <div class="modalbox">
+    <h3 style="margin-top:0;font-size:18px;">Ubah Nama Profil</h3>
+    <input type="text" id="inputEditName" placeholder="Masukkan nama baru">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="btn" style="background:var(--border)" onclick="closeModal('editModal')">Batal</button>
+      <button class="btn btn-primary" onclick="saveProfileName()">Simpan</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TESTIMONI -->
+<div class="modal" id="testiModal">
+  <div class="modalbox">
+    <h3 style="margin-top:0;font-size:18px;">Tulis Testimoni</h3>
+    <input type="text" id="testiNameInput" placeholder="Nama Anda">
+    <input type="text" id="testiNominalInput" placeholder="Jumlah Penarikan (Cth: Rp 100.000)">
+    <input type="text" id="testiMsgInput" placeholder="Pesan / Komentar Anda">
+    <div style="display:flex;gap:10px;justify-content:flex-end;">
+      <button class="btn" style="background:var(--border)" onclick="closeModal('testiModal')">Batal</button>
+      <button class="btn btn-primary" onclick="submitTesti()">Kirim Testimoni</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL UNDANGAN / REFERRAL -->
+<div class="modal" id="undanganModal">
+  <div class="modalbox">
+    <h3 style="margin-top:0;font-size:18px;color:var(--green)">👥 Program Undangan Referral</h3>
+    <p style="font-size:13px;color:var(--muted);">Ajak teman bergabung menggunakan tautan referral Anda dan dapatkan komisi langsung ke saldo utama.</p>
+    <div style="background:var(--bg);padding:10px;border-radius:10px;font-size:12px;font-weight:700;word-break:break-all;margin-bottom:12px;" id="refLinkText">
+      https://nusagold.id/ref/sandi88?ref=active
+    </div>
+    <div style="display:flex;flex-direction:column;gap:8px;">
+      <button class="btn btn-primary" onclick="salinLinkRef()">Salin Link Referral</button>
+      <button class="btn" style="background:var(--border)" onclick="closeModal('undanganModal')">Tutup</button>
+    </div>
+  </div>
+</div>
+
+<!-- MODAL TUGAS HARIAN -->
+<div class="modal" id="tugasModal">
+  <div class="modalbox">
+    <h3 style="margin-top:0;font-size:18px;color:var(--green)">📋 Daftar Tugas Harian</h3>
+    <p style="font-size:13px;color:var(--muted);margin-bottom:12px;">Selesaikan tugas di bawah untuk mendapatkan tambahan saldo gratis.</p>
+    
+    <div style="background:var(--bg);padding:12px;border-radius:12px;margin-bottom:10px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:13px;font-weight:700;">Check-in Harian</div>
+        <div style="font-size:11px;color:var(--muted);">Klaim absensi hari ini</div>
+      </div>
+      <button class="btn btn-primary" style="padding:6px 12px;font-size:11px;" onclick="klaimTugas(5000, this)">Klaim Rp 5.000</button>
+    </div>
+
+    <div style="background:var(--bg);padding:12px;border-radius:12px;margin-bottom:14px;display:flex;justify-content:space-between;align-items:center;">
+      <div>
+        <div style="font-size:13px;font-weight:700;">Bagikan ke Grup</div>
+        <div style="font-size:11px;color:var(--muted);">Bagikan link platform</div>
+      </div>
+      <button class="btn btn-primary" style="padding:6px 12px;font-size:11px;" onclick="klaimTugas(10000, this)">Klaim Rp 10.000</button>
+    </div>
+
+    <button class="btn" style="background:var(--border);width:100%;" onclick="closeModal('tugasModal')">Tutup</button>
+  </div>
+</div>
+
+<!-- MODAL BONUS EKSKLUSIF -->
+<div class="modal" id="bonusModal">
+  <div class="modalbox" style="text-align:center;">
+    <h3 style="margin-top:0;font-size:18px;color:var(--green)">🎁 Bonus Selamat Datang</h3>
+    <p style="font-size:13px;color:var(--muted);">Anda memiliki klaim bonus saldo pendaftaran baru sebesar Rp 25.000.</p>
+    <div style="font-size:22px;font-weight:800;color:var(--green);margin:14px 0;">Rp 25.000</div>
+    <button class="btn btn-primary" style="width:100%;margin-bottom:8px;" onclick="klaimBonusWelcome()">Klaim Bonus Sekarang</button>
+    <button class="btn" style="background:var(--border);width:100%;" onclick="closeModal('bonusModal')">Nanti Saja</button>
+  </div>
+</div>
+
+<div class="toast" id="toast">Notifikasi</div>
+
+<!-- 1. Muat Library Supabase v2 -->
+<script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+
+<script>
+  // 2. Inisialisasi Klien Supabase (Menggunakan Project URL dan Publishable Key Anda)
+  const supabaseUrl = 'https://painxusplrmwlwftvggt.supabase.co';
+  const supabaseKey = 'sb_publishable_M3d3dGFv...'; // Ganti atau pastikan kunci lengkap jika diperlukan, atau gunakan variabel penuh Anda
+  const _supabase = supabase.createClient(supabaseUrl, supabaseKey);
+
+  // 3. Fungsi sinkronisasi data pendaftar/user ke tabel Supabase
+  async function simpanUserKeSupabase(namaUser) {
+    try {
+      const { data, error } = await _supabase
+        .from('users')
+        .insert([{ name: namaUser, created_at: new Date() }]);
+
+      if (error) {
+        console.error('Gagal menyimpan ke Supabase:', error.message);
+      } else {
+        console.log('Berhasil menyimpan user ke Supabase:', data);
+      }
+    } catch (err) {
+      console.error('Terjadi kesalahan koneksi Supabase:', err);
+    }
+  }
+
+  // Fungsi sinkronisasi transaksi investasi/deposit ke Supabase
+  async function simpanTransaksiKeSupabase(jenisTransaksi, nominal, detail) {
+    try {
+      const { data, error } = await _supabase
+        .from('deposits') // atau tabel transaksi Anda
+        .insert([{ 
+          name: state.name, 
+          type: jenisTransaksi, 
+          amount: nominal, 
+          description: detail,
+          created_at: new Date() 
+        }]);
+
+      if (error) {
+        console.error('Gagal mencatat transaksi:', error.message);
+      } else {
+        console.log('Transaksi berhasil dicatat ke database:', data);
+      }
+    } catch (err) {
+      console.error('Kesalahan koneksi:', err);
+    }
+  }
+</script>
+
+<script>
+let state = {
+  name: "Sandi",
+  saldoUtama: 0,
+  investasiList: [],
+  bonusClaimed: false
+};
+
+const rupiah = n => new Intl.NumberFormat('id-ID', { style: 'currency', currency: 'IDR', maximumFractionDigits: 0 }).format(n);
+
+function switchTab(tabId) {
+  document.querySelectorAll('.view').forEach(v => v.classList.remove('active'));
+  document.querySelectorAll('.nav-item').forEach(n => n.classList.remove('active'));
+  
+  document.getElementById('view-' + tabId).classList.add('active');
+  let navBtn = document.getElementById('nav-' + tabId);
+  if(navBtn) navBtn.classList.add('active');
+  window.scrollTo(0, 0);
+}
+
+function showToast(msg) {
+  let t = document.getElementById('toast');
+  t.textContent = msg;
+  t.style.display = 'block';
+  setTimeout(() => { t.style.display = 'none'; }, 2000);
+}
+
+function updateUI() {
+  let initial = state.name.charAt(0).toUpperCase();
+  document.getElementById('userNameHeader').textContent = state.name;
+  document.getElementById('userInitialHeader').textContent = initial;
+  document.getElementById('profilName').textContent = state.name;
+  document.getElementById('profilAvatarInitial').textContent = initial;
+  
+  document.getElementById('saldoUtamaText').textContent = rupiah(state.saldoUtama);
+  document.getElementById('profilSaldoUtama').textContent = rupiah(state.saldoUtama);
+
+  let totalLot = state.investasiList.reduce((acc, item) => acc + item.lot, 0);
+  let totalNilai = state.investasiList.reduce((acc, item) => acc + item.harga, 0);
+  let totalKeuntungan = state.investasiList.reduce((acc, item) => acc + item.profit, 0);
+
+  document.getElementById('portoTotalNilai').textContent = rupiah(totalNilai);
+  document.getElementById('profilTotalVal').textContent = rupiah(totalNilai);
+  document.getElementById('portoJmlLot').textContent = totalLot + " Lot dimiliki";
+  document.getElementById('portoKeuntungan').textContent = rupiah(totalKeuntungan);
+  document.getElementById('portoDividen').textContent = rupiah(totalKeuntungan * 0.2);
+  document.getElementById('sertifBadge').textContent = state.investasiList.length + " Sertifikat";
+
+  let emptyContainer = document.getElementById('portoEmptyContainer');
+  let listContainer = document.getElementById('portoListContainer');
+  
+  if(state.investasiList.length === 0) {
+    emptyContainer.style.display = 'block';
+    listContainer.innerHTML = '';
+  } else {
+    emptyContainer.style.display = 'none';
+    let html = '';
+    state.investasiList.forEach((item, idx) => {
+      html += `
+        <div class="market-card" style="margin-bottom:0;">
+          <div class="market-header">
+            <span>Capital Lot • Aktif #${idx+1}</span>
+            <span style="background:var(--green-light);color:var(--green);padding:2px 8px;border-radius:6px;font-weight:700;">30 Hari</span>
+          </div>
+          <div class="market-body">
+            <div>
+              <div style="font-size:16px;font-weight:800;color:var(--green);">${item.lot} Lot</div>
+              <small style="font-size:11px;color:var(--muted);">Modal: ${rupiah(item.harga)}</small>
+            </div>
+            <div style="text-align:right;">
+              <div style="font-size:11px;color:var(--muted)">POTENSI PROFIT</div>
+              <div style="font-size:14px;font-weight:800;color:var(--accent);">+${rupiah(item.profit)}</div>
+            </div>
+          </div>
+        </div>
+      `;
+    });
+    listContainer.innerHTML = html;
+  }
+}
+
+function beliLot(lotCount, hargaTotal) {
+  if (state.saldoUtama < hargaTotal) {
+    showToast('Saldo utama tidak cukup, lakukan deposit terlebih dahulu.');
+    return;
+  }
+  state.saldoUtama -= hargaTotal;
+  state.investasiList.push({
+    lot: lotCount,
+    harga: hargaTotal,
+    profit: lotCount === 10 ? 540000 : 1755000
+  });
+  
+  // Kirim data transaksi pembelian lot ke Supabase
+  simpanTransaksiKeSupabase('Beli Lot', hargaTotal, `Membeli ${lotCount} lot investasi`);
+
+  showToast(`Berhasil membeli ${lotCount} Lot!`);
+  updateUI();
+  switchTab('portofolio');
+}
+
+/* MODAL CONTROLS */
+function openModal(id) { document.getElementById(id).classList.add('show'); }
+function closeModal(id) { document.getElementById(id).classList.remove('show'); }
+
+function openEditModal() {
+  document.getElementById('inputEditName').value = state.name;
+  openModal('editModal');
+}
+function saveProfileName() {
+  let val = document.getElementById('inputEditName').value.trim();
+  if(val) {
+    state.name = val;
+    updateUI();
+    // Sinkronisasi perubahan nama profil ke Supabase
+    simpanUserKeSupabase(val);
+    showToast('Nama profil berhasil diubah & disinkronkan');
+  }
+  closeModal('editModal');
+}
+
+function openTestiModal() { openModal('testiModal'); }
+function submitTesti() {
+  let name = document.getElementById('testiNameInput').value.trim() || "Anggota NUSAGOLD";
+  let nominal = document.getElementById('testiNominalInput').value.trim() || "Rp 50.000";
+  let msg = document.getElementById('testiMsgInput').value.trim() || "Platform investasi terbaik dan terpercaya!";
+  
+  let newCard = document.createElement('div');
+  newCard.className = 'testi-card';
+  newCard.innerHTML = `
+    <div class="testi-top">
+      <span>${name}</span>
+      <span style="color:var(--green);font-size:14px;">${nominal}</span>
+    </div>
+    <div class="testi-msg">${msg}</div>
+    <div class="testi-user">
+      <span>ID 8*********1 • Baru saja</span>
+      <span style="background:var(--green-light);color:var(--green);padding:2px 6px;border-radius:4px;font-size:10px;">PENARIKAN BERHASIL</span>
+    </div>
+  `;
+  
+  let viewBukti = document.getElementById('view-bukti');
+  viewBukti.insertBefore(newCard, viewBukti.children[2]);
+  
+  closeModal('testiModal');
+  showToast('Testimoni berhasil dikirim!');
+  document.getElementById('testiNameInput').value = '';
+  document.getElementById('testiNominalInput').value = '';
+  document.getElementById('testiMsgInput').value = '';
+}
+
+/* FUNGSI MENU REFERRAL, TUGAS & BONUS */
+function openModalUndangan() { openModal('undanganModal'); }
+function salinLinkRef() {
+  let linkText = document.getElementById('refLinkText').innerText;
+  navigator.clipboard.writeText(linkText).then(() => {
+    showToast('Link referral berhasil disalin!');
+  }).catch(() => {
+    showToast('Gagal menyalin link');
+  });
+}
+
+function openModalTugas() { openModal('tugasModal'); }
+function klaimTugas(nominal, btnElement) {
+  state.saldoUtama += nominal;
+  btnElement.textContent = 'Diklaim ✓';
+  btnElement.disabled = true;
+  btnElement.style.background = 'var(--muted)';
+  updateUI();
+  simpanTransaksiKeSupabase('Klaim Tugas', nominal, 'Klaim hadiah tugas harian');
+  showToast(`Berhasil klaim Rp ${nominal.toLocaleString('id-ID')}!`);
+}
+
+function openModalBonus() { openModal('bonusModal'); }
+function klaimBonusWelcome() {
+  if (state.bonusClaimed) {
+    showToast('Bonus sudah pernah diklaim sebelumnya.');
+    return;
+  }
+  state.bonusClaimed = true;
+  state.saldoUtama += 25000;
+  updateUI();
+  simpanTransaksiKeSupabase('Bonus Pendaftaran', 25000, 'Klaim bonus selamat datang');
+  closeModal('bonusModal');
+  showToast('Bonus Rp 25.000 berhasil ditambahkan ke saldo!');
+}
+
+updateUI();
+</script>
+</body>
+</html>
